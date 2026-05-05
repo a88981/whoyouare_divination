@@ -390,16 +390,19 @@
     line-height: 2;
   }
   .faq-good { color: #B8860B; font-weight: 500; }
-  .faq-bad { color: #888; }
+  .faq-good::before { content: '○ '; color: #F5C200; font-weight: 700; }
+  .faq-bad { color: var(--text-muted); }
+  .faq-bad::before { content: '✕ '; color: #F5C200; font-size: 0.8rem; }
+  
   .faq-nope-grid {
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
   }
   .faq-nope {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: #5A5020;
-    padding-left: 1.4rem;
+    padding-left: 1.2rem;
     position: relative;
     line-height: 1.9;
   }
@@ -407,8 +410,16 @@
     content: '✕';
     position: absolute; left: 0;
     color: #F5C200;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     top: 0.3rem;
+  }
+  .faq-nope-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  @media (max-width: 700px) {
+    .faq-nope { font-size: 0.76rem; line-height: 1.7; }
   }
   @media (max-width: 700px) {
     .faq-cards { grid-template-columns: 1fr; }
@@ -449,8 +460,8 @@
     position: relative;
     color: var(--text-muted);
   }
-  .guide-good p::before { content: '⭕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #B8860B; }
-  .guide-bad p::before { content: '✕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #C97070; }
+  .guide-good p::before { content: '○'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #F5C200; font-weight: 700; }
+  .guide-bad p::before { content: '✕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #F5C200; }
   .guide-bad p { color: #9A8060; }
   .sub-label {
     font-size: 0.85rem;
@@ -816,24 +827,29 @@
       <div class="faq-card">
         <div class="faq-card-q">占卜的時效是多久？</div>
         <div class="faq-card-a">
-          占卜時效以<strong>三個月</strong>或<strong>半年</strong>的發展為主。如果是尚未開始的事情就沒有時效範圍，例如：「我如果去賣蛋糕的發展會如何？」
+          占卜時效以<strong>三個月</strong>或<strong>半年</strong>的發展為主。<br>
+          如果是尚未開始的事情就沒有時效範圍，<br>
+          例如：「我如果去賣蛋糕的發展會如何？」
         </div>
       </div>
 
       <div class="faq-card">
         <div class="faq-card-q">要告知問題的所有細節嗎？</div>
         <div class="faq-card-a">
-          <strong>不需要主動告知，只需要告知問題即可。</strong>不用主動告知任何你對此事件的想法與現況，因為會干擾解讀。除非小玩有詢問，再告知即可。
+          為了保持占卜的客觀性，占卜時請告知問題即可。<br>
+          不需分享事件現況或個人想法，避免干擾牌面解讀。<br>
+          除非後續我有詢問，再請您補充說明即可。
         </div>
       </div>
 
       <div class="faq-card">
         <div class="faq-card-q">問題該怎麼問？</div>
         <div class="faq-card-a">
-          <span class="faq-good">⭕ 開放式問法（How / What / Why）</span><br>
-          例如：「這三個月的感情發展如何？」「我若主動聯絡的發展會如何？」<br><br>
-          <span class="faq-bad">✕ 封閉式問法（Yes / No）</span><br>
-          例如：「對方喜歡我嗎？」「我這個月會升遷嗎？」
+          <span class="faq-good">開放式問法（How / What / Why）</span><br>
+          「這三個月的感情發展如何？」<br>
+          「我若主動聯絡的發展會如何？」<br><br>
+          <span class="faq-bad">封閉式問法（Yes / No）</span><br>
+          「對方喜歡我嗎？」「我這個月會升遷嗎？」
         </div>
       </div>
 
@@ -841,12 +857,11 @@
         <div class="faq-card-q">哪些狀況不能占？</div>
         <div class="faq-card-a">
           <div class="faq-nope-grid">
-            <span class="faq-nope">生死 ／ 官司 ／ 健康 ／ 投資偏財賭博 ／ 危害他人</span>
-            <span class="faq-nope">距離上次解讀未滿三個月 🫠</span>
+            <span class="faq-nope">生死 ／ 官司 ／ 健康 ／ 投資（偏財、賭博）／ 危害他人</span>
+            <span class="faq-nope">距離上次解讀未滿三個月（到底 4 多急？🫠）</span>
             <span class="faq-nope">自身以外的事（你只能管好你自己 🥴）</span>
-            <span class="faq-nope">已問過其他占卜師（請尊重上一個老師 😠）</span>
-            <span class="faq-nope">只想聽自己想聽 ／ 覺得不準想退錢 😒</span>
-            <span class="faq-nope">想聽到鐵口直斷的答案 🥺</span>
+            <span class="faq-nope">只想聽自己想聽 ／ 覺得不準想退錢（不要來浪費錢啦 😒）</span>
+            <span class="faq-nope">想聽到鐵口直斷的答案（我也沒有真的這ㄇ神通廣大啦 🥺）</span>
           </div>
         </div>
       </div>
@@ -1163,7 +1178,7 @@
           <div class="guide-good">
             <p>與對方這三個月的感情發展？</p>
             <p>我若主動 ／ 告白，這段關係發展會如何？</p>
-            <p>他跟我告白了，我跟他交往的話發展會如何？（僅限曖昧中）</p>
+            <p>我跟他交往的話發展會如何？（僅限曖昧中）</p>
           </div>
           <div class="guide-bad">
             <p>對方喜歡我嗎？</p>
@@ -1175,7 +1190,6 @@
 
         <div class="sub-section">
           <div class="sub-label">交往中</div>
-          <div class="sub-note"># 感情穩定者請就不要占卜亂嚇自己，你需要的是指引占卜</div>
           <div class="guide-good">
             <p>與對方這三個月的感情發展？</p>
             <p>跟這個對象結婚的發展會如何？</p>
@@ -1190,7 +1204,6 @@
 
         <div class="sub-section" style="border-bottom: none; padding-bottom: 0;">
           <div class="sub-label">斷聯 ／ 復合 ／ 藕斷絲連 ／ 想分手</div>
-          <div class="sub-note"># 若是情傷中的狀態，你需要的是指引占卜</div>
           <div class="guide-good">
             <p>與對方這三個月的感情發展？</p>
             <p>我若主動聯絡，這段關係發展會如何？</p>
@@ -1272,7 +1285,7 @@
         <div class="guide-title">友情 ／ 家庭 ／ 職場人際</div>
         <div class="guide-good">
           <p>這三個月與對方的互動會如何？</p>
-          <p>我如果跟對方主動談和，關係會變怎樣？</p>
+          <p>我如果跟對方主動談和，<br>關係會變怎樣？</p>
           <p>我跟這群朋友深交的話會如何？</p>
         </div>
         <div class="guide-bad">
@@ -1299,7 +1312,7 @@
         <div class="guide-title">情傷中 ／ 感到迷惘 ／ 需要方向</div>
         <div class="guide-good">
           <p>對於工作 ／ 感情，目前需要什麼指引？</p>
-          <p>我對於這件事為什麼感到恐懼？請給我一個指引。</p>
+          <p>我對於這件事為什麼感到恐懼？<br>請給我一個指引。</p>
         </div>
       </div>
 
