@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小玩的心靈牌卡占卜</title>
+<title>🔮 小玩的心靈牌卡占卜</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -103,7 +103,7 @@
   }
   .hero-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
     font-weight: 300;
     color: var(--charcoal);
     line-height: 1.25;
@@ -117,7 +117,7 @@
   }
   .hero-subtitle {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-size: clamp(0.82rem, 1.3vw, 1rem);
     font-style: italic;
     color: var(--text-muted);
     letter-spacing: 0.05em;
@@ -141,19 +141,20 @@
     max-width: 560px;
   }
   .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.8rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
     font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    padding: 1rem 2.4rem;
-    background: #F5C200;
-    color: #1A1500;
+    letter-spacing: 0.18em;
+    padding: 0.7rem 2rem;
+    background: transparent;
+    color: var(--deep-wine);
     text-decoration: none;
     transition: all 0.3s;
     position: relative;
-    font-weight: 500;
-    border-radius: 2px;
+    font-weight: 400;
+    border: 1px solid rgba(180,148,20,0.45);
+    border-radius: 40px;
   }
-  .hero-cta:hover { background: #E0B000; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,194,0,0.3); }
+  .hero-cta:hover { background: #FFFAEB; border-color: #F5C200; color: #8A6C00; transform: translateY(-1px); }
   .scroll-hint {
     position: absolute; bottom: 2.5rem;
     font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-muted);
@@ -553,7 +554,7 @@
   .contact-box .section-label::after { display: none; }
   .contact-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
     font-weight: 300; font-style: italic;
     color: var(--cream);
     margin-bottom: 1rem;
@@ -627,8 +628,8 @@
   </div>
   <ul class="nav-links">
     <li><a href="#about">占卜須知</a></li>
-    <li><a href="#reviews">客戶好評</a></li>
-    <li><a href="#services">服務菜單</a></li>
+    <li><a href="#reviews">占卜回饋</a></li>
+    <li><a href="#services">占卜方案</a></li>
     <li><a href="#guide">發問指南</a></li>
     <li><a href="#contact">預約占卜</a></li>
   </ul>
@@ -637,13 +638,13 @@
 <!-- HERO -->
 <section class="hero">
   <div class="fade-up delay-1" style="margin-bottom: 1.2rem; position: relative; z-index: 1;">
-    <img src="logo.png" alt="我只是想知道" style="width: 320px; height: 320px; object-fit: contain;">
+    <img src="logo.png" alt="我只是想知道" style="width: 420px; height: 420px; object-fit: contain;">
   </div>
 
   <h1 class="hero-title fade-up delay-2" style="position: relative; z-index: 1; font-size: clamp(1.8rem, 3.5vw, 2.8rem);">小玩的<em>心靈牌卡占卜</em></h1>
   <p class="hero-subtitle fade-up delay-3" style="position: relative; z-index: 1;">我們來到「占卜」面前，尋找的，不過是那份「知道」。</p>
   <p class="hero-tools-text fade-up delay-3" style="position: relative; z-index: 1;">珍愛卡 · 塔羅牌 · 人類圖 · 生命數字 · 色彩反映卡 · 情緒療癒卡 · 寵物療癒卡<br>厭愛症 · 愛無能 · 練愛士 · HoHo療癒卡 · 微光卡 · 各類神諭卡</p>
-  <a href="#services" class="hero-cta fade-up delay-4" style="position: relative; z-index: 1;">查看服務菜單 &nbsp;↓</a>
+  <a href="#services" class="hero-cta fade-up delay-4" style="position: relative; z-index: 1;">查看占卜方案 &nbsp;↓</a>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     <span>scroll</span>
@@ -724,7 +725,7 @@
 <!-- REVIEWS -->
 <section id="reviews" style="background: #FFF9E6; overflow: hidden;">
   <div class="section-inner">
-    <div class="section-label">客戶好評</div>
+    <div class="section-label">占卜回饋</div>
     <h2 class="section-title">他們說⋯⋯</h2>
   </div>
   <div class="reviews-track-wrapper">
@@ -815,7 +816,7 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
-    <div class="section-label">服務菜單</div>
+    <div class="section-label">占卜方案</div>
     <h2 class="section-title">選擇適合你的占卜方式</h2>
 
     <!-- 一對一占卜 -->
