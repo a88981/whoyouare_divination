@@ -550,8 +550,8 @@
   .contact-box {
     text-align: center;
     padding: 5rem 2rem;
-    background: var(--charcoal);
-    color: var(--cream);
+    background: #FFFFFF;
+    color: var(--charcoal);
     position: relative;
     overflow: hidden;
   }
@@ -566,32 +566,30 @@
   .contact-box .section-label::after { display: none; }
   .contact-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 300; font-style: italic;
-    color: var(--cream);
+    color: var(--charcoal);
     margin-bottom: 1rem;
   }
   .contact-sub {
-    font-size: 0.82rem; color: rgba(247,243,238,0.55);
+    font-size: 0.82rem; color: var(--text-muted);
     letter-spacing: 0.05em; margin-bottom: 2.5rem;
     line-height: 1.9;
   }
   .contact-btn {
-    display: inline-flex; align-items: center; gap: 0.8rem;
-    font-size: 0.75rem; letter-spacing: 0.2em;
-    padding: 1rem 2.4rem;
-    border: 0.5px solid rgba(247,243,238,0.4);
-    color: var(--cream);
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; letter-spacing: 0.18em;
+    padding: 0.7rem 2rem;
+    background: transparent;
+    color: var(--deep-wine);
     text-decoration: none;
     transition: all 0.3s;
-    background: transparent;
     position: relative; z-index: 1;
+    font-weight: 400;
+    border: 1px solid rgba(180,148,20,0.45);
+    border-radius: 40px;
   }
-  .contact-btn:hover {
-    background: var(--dusty-rose);
-    border-color: var(--dusty-rose);
-    color: var(--charcoal);
-  }
+  .contact-btn:hover { background: #FFFAEB; border-color: #F5C200; color: #8A6C00; transform: translateY(-1px); }
 
   /* ─── FOOTER ─── */
   footer {
@@ -1317,7 +1315,7 @@
       </div>
 
     </div>
-    <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 2rem; letter-spacing: 0.05em;">如果以上的問題都沒有共鳴，歡迎私訊小玩討論問題！</p>
+    <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 2rem; letter-spacing: 0.05em;">所有問題皆可客製化，歡迎私訊小玩討論問題！</p>
   </div>
 </section>
 
@@ -1327,9 +1325,10 @@
   <h2 class="contact-title">準備好了嗎？</h2>
   <p class="contact-sub">
     帶著你的問題，帶著聊天的心情<br>
-    讓牌陪你看清內心真正的聲音
+    讓牌陪你看見內心想知道的事
   </p>
   <a href="https://www.instagram.com/yufangzhong/" target="_blank" class="contact-btn">私訊預約 &nbsp;→</a>
+  <a href="https://a88981.github.io/whoyouare_divination/booking.html" target="_blank" class="contact-btn" style="margin-left: 1rem;">填寫預約確認單 &nbsp;✦</a>
 </div>
 
 <!-- FOOTER -->
