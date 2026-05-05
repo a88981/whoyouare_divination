@@ -600,11 +600,78 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 700px) {
-    nav { padding: 1rem 1.5rem; }
+    /* Nav */
+    nav { padding: 0.8rem 1.2rem; }
     .nav-links { display: none; }
+    .nav-logo { font-size: 0.82rem; }
+    .nav-logo img { width: 24px; height: 24px; }
+
+    /* Hero */
+    .hero { padding: 5rem 1.2rem 3rem; }
+    .hero img[alt="我只是想知道"] { width: 75vw !important; height: 75vw !important; }
+    .hero-title { font-size: 1.1rem !important; margin-bottom: 0.4rem; }
+    .hero-subtitle { font-size: 0.82rem !important; margin-bottom: 1.2rem; }
+    .hero-tools-text { font-size: 0.72rem; line-height: 2; margin-bottom: 1.5rem; }
+    .hero-cta { font-size: 0.72rem; padding: 0.6rem 1.6rem; }
+
+    /* Sections */
+    section { padding: 2.5rem 1.2rem; }
+    .section-title { font-size: 1.2rem !important; margin-bottom: 1rem; }
+
+    /* Notice */
+    .notice { padding: 1.2rem 1.4rem; }
+    .notice p { font-size: 0.82rem; }
+
+    /* FAQ cards */
+    .faq-cards { grid-template-columns: 1fr; }
+    .faq-nope-grid { grid-template-columns: 1fr; }
+    .faq-card { padding: 1.2rem 1.4rem; }
+    .faq-card-q { font-size: 0.88rem; }
+    .faq-card-a { font-size: 0.82rem; }
+
+    /* Services - one on one */
     .service-card.featured { grid-template-columns: 1fr; }
     .service-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
+
+    /* One-on-one pricing: stack vertically */
+    div[style*="grid-template-columns: 1fr 1.3fr"],
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    div[style*="grid-template-columns: 1fr 1fr; gap: 1rem"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Rules grid */
+    div[style*="grid-template-columns: 1fr 1fr; gap: 1.4rem"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Reviews */
+    .review-card { width: 80vw; padding: 0.9rem 1rem; }
+    .review-text { font-size: 0.75rem; }
+
+    /* Guide grid */
+    .guide-grid { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns: 1fr 1fr; gap: 0 2.5rem"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Offline grid */
+    div[style*="grid-template-columns: 1fr 1fr; gap: 1.2rem"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Service list suitable questions */
+    ul[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Footer */
+    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.5rem; }
+
+    /* Contact */
+    .contact-box { padding: 3rem 1.5rem; }
   }
 
   /* ─── ANIMATIONS ─── */
