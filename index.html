@@ -34,7 +34,7 @@
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.9;
+    line-height: 1.75;
     overflow-x: hidden;
   }
 
@@ -170,12 +170,12 @@
   }
 
   /* ─── SECTIONS ─── */
-  section { padding: 7rem 2rem; }
+  section { padding: 3rem 2rem; }
   .section-inner { max-width: 900px; margin: 0 auto; }
 
   .section-label {
     font-size: 0.65rem; letter-spacing: 0.35em; color: var(--dusty-rose);
-    text-transform: uppercase; margin-bottom: 1rem;
+    text-transform: uppercase; margin-bottom: 0.4rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
   .section-label::after {
@@ -184,12 +184,12 @@
   }
   .section-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 300;
     color: var(--charcoal);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.2rem;
     letter-spacing: 0.05em;
-    line-height: 1.4;
+    line-height: 1.3;
   }
 
   /* ─── NOTICE BOX ─── */
@@ -301,13 +301,16 @@
     display: inline-block;
   }
   .service-badge {
-    position: absolute; top: 1.5rem; right: 1.5rem;
-    font-size: 0.72rem; letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
     color: #7A5C00;
     background: #FFF3B0;
-    border: 0.5px solid rgba(245,194,0,0.4);
-    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(245,194,0,0.5);
+    padding: 0.2rem 0.8rem;
     border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-block;
   }
 
   /* ─── FAQ ─── */
@@ -384,7 +387,7 @@
     color: #4A4020;
     line-height: 2;
   }
-  .faq-good { color: #7A8A00; font-weight: 500; }
+  .faq-good { color: #B8860B; font-weight: 500; }
   .faq-bad { color: #888; }
   .faq-nope-grid {
     display: flex;
@@ -444,7 +447,7 @@
     position: relative;
     color: var(--text-muted);
   }
-  .guide-good p::before { content: '⭕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; }
+  .guide-good p::before { content: '⭕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #B8860B; }
   .guide-bad p::before { content: '✕'; position: absolute; left: 0; font-size: 0.65rem; top: 0.42rem; color: #C97070; }
   .guide-bad p { color: #9A8060; }
   .sub-label {
@@ -464,13 +467,14 @@
   /* ─── REVIEWS ─── */
   .reviews-track-wrapper {
     overflow: hidden;
-    padding: 0.5rem 0 2.5rem;
+    padding: 0.3rem 0 1.5rem;
     position: relative;
   }
   .reviews-track {
     display: flex;
     gap: 1.2rem;
     width: max-content;
+    align-items: stretch;
     animation: reviewsScroll 120s linear infinite;
   }
   .reviews-track:hover { animation-play-state: paused; }
@@ -481,40 +485,49 @@
   .review-card {
     background: #FFFFFF;
     border: 1px solid rgba(245,194,0,0.25);
-    border-radius: 12px;
-    padding: 2rem 2rem 1.6rem;
-    width: 360px;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    width: 400px;
     flex-shrink: 0;
-    position: relative;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
     transition: box-shadow 0.25s, border-color 0.25s;
   }
-  .review-card:hover { border-color: #F5C200; box-shadow: 0 6px 24px rgba(245,194,0,0.15); }
+  .review-card:hover { border-color: #F5C200; box-shadow: 0 4px 16px rgba(245,194,0,0.15); }
+  .review-left {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.1rem;
+  }
+  .review-right { flex: 1; min-width: 0; }
   .review-quote {
-    font-size: 2.8rem;
+    font-size: 1.6rem;
     line-height: 1;
     color: #F5C200;
-    margin-bottom: 0.8rem;
     font-family: 'Cormorant Garamond', serif;
   }
   .review-tag {
     display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
     color: #7A5C00;
     background: #FFF3B0;
     border: 0.5px solid rgba(245,194,0,0.4);
-    padding: 0.25rem 0.75rem;
+    padding: 0.15rem 0.55rem;
     border-radius: 20px;
-    margin-bottom: 1.1rem;
   }
   .review-text {
-    font-size: 0.88rem;
+    font-size: 0.78rem;
     color: #3A3010;
-    line-height: 1.95;
-    margin-bottom: 1.4rem;
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
   }
   .review-name {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     color: var(--muted-mauve);
     letter-spacing: 0.08em;
     font-style: italic;
@@ -609,8 +622,8 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="/mnt/user-data/uploads/我只是想知道.png" alt="我只是想知道">
-    小玩の占卜室
+    <img src="logo.png" alt="我只是想知道">
+    我只是想知道 ✦ 心靈牌卡占卜
   </div>
   <ul class="nav-links">
     <li><a href="#about">占卜須知</a></li>
@@ -624,7 +637,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="fade-up delay-1" style="margin-bottom: 1.6rem;">
-    <img src="/mnt/user-data/uploads/我只是想知道.png" alt="小玩的心靈牌卡占卜 Logo" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 36px rgba(180,150,30,0.28);">
+    <img src="logo.png" alt="小玩的心靈牌卡占卜 Logo" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 36px rgba(180,150,30,0.28);">
   </div>
   <h1 class="hero-title fade-up delay-2">小玩的<em>心靈牌卡占卜</em></h1>
   <p class="hero-subtitle fade-up delay-3">我們來到「占卜」面前，尋找的，不過是那份「知道」。</p>
@@ -717,52 +730,80 @@
     <div class="reviews-track">
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">事業占卜</div>
-        <p class="review-text">這次回總部主管有跟我聊到，他跟大主管討論後，覺得我很適合接手專案部門主管這個位置～<br><br>有先透過他初步來詢問我的意願，有沒有想去專案部門試看看，另外是公司會在今年想要做代理商，所以會碰到報關與物流的部分！<br><br>我聽到當下立刻想到，當初要面試的時候小玩就說：「我的牌看起來完全不像是要做美編的樣子，感覺跟專案開發有關。」<br><br>當時還覺得怎麼可能，但現在這件事真的浮現了，回想起來覺得超神奇！小玩那時候不只準，還幫我看到了連我自己都還沒想到的職涯轉折點。</p>
-        <div class="review-name">— A小姐</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">事業</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">這次回總部主管有跟我聊到，他跟大主管討論後，覺得我很適合接手專案部門主管這個位置～有先透過他初步來詢問我的意願，有沒有想去專案部門試看看，另外是公司會在今年想要做代理商，所以會碰到報關與物流的部分！我聽到當下立刻想到，當初要面試的時候小玩就說：「我的牌看起來完全不像是要做美編的樣子，感覺跟專案開發有關。」當時還覺得怎麼可能，但現在這件事真的浮現了，回想起來覺得超神奇！小玩那時候不只準，還幫我看到了連我自己都還沒想到的職涯轉折點。</p>
+          <div class="review-name">— A小姐</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">事業占卜</div>
-        <p class="review-text">反饋一下！上次算的真的非常準，小玩有提到最近公司的人可能會來找我談事情，結果前天真的接到電話了！<br><br>雖然談的內容對我現在的狀態不太有實質幫助，他們是希望我平常負責的專案可以多往實體活動的方向去發展，但目前公司現有的資源的確不太夠，跟我自己的規劃有點落差。🥲<br><br>目前我也打算照著原本的步調，把重心往優化 VIP 服務這方面去做，謝謝小玩當初的提醒，讓我在接到電話的時候心裡早就有個底，不會太手足無措。🙏</p>
-        <div class="review-name">— N小姐</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">事業</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">反饋一下！上次算的真的非常準，小玩有提到最近公司的人可能會來找我談事情，結果前天真的接到電話了！雖然談的內容對我現在的狀態不太有實質幫助，他們是希望我平常負責的專案可以多往實體活動的方向去發展，但目前公司現有的資源的確不太夠，跟我自己的規劃有點落差。🥲 目前我也打算照著原本的步調，把重心往優化 VIP 服務這方面去做，謝謝小玩當初的提醒，讓我在接到電話的時候心裡早就有個底，不會太手足無措。🙏</p>
+          <div class="review-name">— N小姐</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">感情占卜</div>
-        <p class="review-text">三個月前我還在暈對象 A 的時候，小玩就直接跟我說：「我覺得會有更喜歡的」。當時我還半信半疑，覺得目前明明就只看得到這個人啊！<br><br>小玩那時候還分析說 A 對談戀愛不太積極，甚至精準點出他的性格特徵（後來對答案發現他真的是 ISTJ，特徵完全符合）。<br><br>最神的是，三個月後我真的「又暈船了」！小玩那時候說第三個月會是底線，結果我們真的就在三月在一起了！回頭看三個月前的對話紀錄真的會起雞皮疙瘩，小玩當時說「會有更喜歡的」這句話我甚至還直接置頂。<br><br>只能說小玩的占卜含金量還在持續上升，不管是看對象的性格、約會的機會，還是最後在一起的時間點，依舊準到不行！謝謝小玩讓我少走很多冤枉路 ❤️</p>
-        <div class="review-name">— H先生</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">感情</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">三個月前我還在暈對象 A 的時候，小玩就直接跟我說：「我覺得會有更喜歡的」。當時我還半信半疑，覺得目前明明就只看得到這個人啊！小玩那時候還分析說 A 對談戀愛不太積極，甚至精準點出他的性格特徵（後來對答案發現他真的是 ISTJ，特徵完全符合）。最神的是，三個月後我真的「又暈船了」！小玩那時候說第三個月會是底線，結果我們真的就在三月在一起了！回頭看真的會起雞皮疙瘩，謝謝小玩讓我少走很多冤枉路 ❤️</p>
+          <div class="review-name">— H先生</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">感情占卜</div>
-        <p class="review-text">明明我什麼都還沒說，小玩就直接點出我現在想先處理好自己的狀態、不想帶著包袱跟別人發展的心情，真的準到讓我一直起雞皮疙瘩！<br><br>小玩連對方心裡還抱著一大堆對前任的委屈、還有要照顧家裡這種私事都抽得出來⋯⋯而且對階段性的預測也很精準，連我之後搬完家、換好工作，什麼時候才會有餘裕去在意感情的時間點都對上了。<br><br>本來還很困惑，聊完後真的有種撥雲見日的感覺。</p>
-        <div class="review-name">— Z先生</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">感情</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">明明我什麼都還沒說，小玩就直接點出我現在想先處理好自己的狀態、不想帶著包袱跟別人發展的心情，真的準到讓我一直起雞皮疙瘩！小玩連對方心裡還抱著一大堆對前任的委屈、還有要照顧家裡這種私事都抽得出來⋯⋯而且對階段性的預測也很精準，連搬完家、換好工作，什麼時候才會有餘裕去在意感情的時間點都對上了。本來還很困惑，聊完後真的有種撥雲見日的感覺。</p>
+          <div class="review-name">— Z先生</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">事業占卜</div>
-        <p class="review-text">我來跟小玩回饋一下之前幫我占卜工作的部分了！從面試之後到現在工作第四天，當時提到這間公司會偏一板一眼、規範多、容易綁手綁腳，實際進去後發現公司確實有自己制度、規範，也很注重效率，並且要求我馬上能上工😇<br><br>原本談的是電商經營、美編，實際工作內容卻慢慢變成同時包含行銷、小編、銷售、門市人員、倉儲、整店清潔（含廁所）等角色（全部的工作份量佔比是一樣多的），最近他甚至跟面試的人介紹我是店長...<br><br>感謝小玩的占卜，又再次雞皮疙瘩😨 嘗試幾天後，我又要開始需要思考自己的未來方向了🙃</p>
-        <div class="review-name">— M小姐</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">事業</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">從面試之後到現在工作第四天，當時提到這間公司會偏一板一眼、規範多、容易綁手綁腳，實際進去後發現公司確實有自己制度、規範，也很注重效率。原本談的是電商經營、美編，實際工作內容卻慢慢變成同時包含行銷、小編、銷售、門市人員、倉儲、整店清潔（含廁所）等角色，最近他甚至跟面試的人介紹我是店長... 感謝小玩的占卜，又再次雞皮疙瘩😨</p>
+          <div class="review-name">— M小姐</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">指引占卜</div>
-        <p class="review-text">謝謝小玩！說來也巧，偶然的情況下，看見了痣作人的影片發現了小玩有在經營占卜，以前我自己從來也沒有嘗試過這樣的形式。<br><br>跟妳聊完之後才有撥雲見日的感覺，也更有方向知道自己的目標了（更訝異的是居然可以把我想的想法完全一五一十都說得準確）<br><br>謝謝妳，能在這個時候遇見妳真的太好了🥹（剪輯師口才居然還這麼好是正常的嗎🤔😂😂）</p>
-        <div class="review-name">— B先生</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">指引</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">偶然的情況下，看見了痣作人的影片發現了小玩有在經營占卜，以前我自己從來也沒有嘗試過這樣的形式。跟妳聊完之後才有撥雲見日的感覺，也更有方向知道自己的目標了（更訝異的是居然可以把我想的想法完全一五一十都說得準確）謝謝妳，能在這個時候遇見妳真的太好了🥹</p>
+          <div class="review-name">— B先生</div>
+        </div>
       </div>
 
       <div class="review-card">
-        <div class="review-quote">❝</div>
-        <div class="review-tag">指引占卜</div>
-        <p class="review-text">能夠認識都是緣分❤️ 在這時候認識老師相信也是上天的安排，來都來了，不占卜一下嗎？🔮<br><br>老師解牌的時候我真的好幾度起雞皮疙瘩，不是迷信什麼的，只是現在的我很迷茫，找不到未來的方向，也不知道該怎麼做。<br><br>聽完小玩的分析跟討論，覺得在做決定時好像也能多一點信心了。</p>
-        <div class="review-name">— Y小姐</div>
+        <div class="review-left">
+          <div class="review-quote">❝</div>
+          <div class="review-tag">指引</div>
+        </div>
+        <div class="review-right">
+          <p class="review-text">能夠認識都是緣分❤️ 在這時候認識老師相信也是上天的安排，來都來了，不占卜一下嗎？🔮 老師解牌的時候我真的好幾度起雞皮疙瘩，不是迷信什麼的，只是現在的我很迷茫，找不到未來的方向，也不知道該怎麼做。聽完小玩的分析跟討論，覺得在做決定時好像也能多一點信心了。</p>
+          <div class="review-name">— Y小姐</div>
+        </div>
       </div>
 
     </div>
@@ -781,120 +822,171 @@
 
       <!-- 標題 -->
       <div style="margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(245,194,0,0.2);">
-        <div style="font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem;">◈ 一對一占卜</div>
+        <div style="font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem;">✦ 一對一占卜</div>
         <div style="font-size: 0.92rem; color: var(--text-muted);">時間內不限題數，不限種類，全面解析！</div>
       </div>
 
-      <!-- 兩欄主體 -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+      <!-- 主體：定價全寬，適合問題在下 -->
+      <div style="display: flex; flex-direction: column; gap: 1.8rem;">
 
         <!-- 左欄：定價 -->
         <div>
-          <div style="font-size: 0.72rem; letter-spacing: 0.2em; color: var(--dusty-rose); text-transform: uppercase; margin-bottom: 1.2rem;">定價</div>
-          <div style="margin-bottom: 1.2rem; padding: 1.1rem 1.3rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
-            <div style="font-size: 0.8rem; color: var(--muted-mauve); margin-bottom: 0.3rem;">線上占卜</div>
-            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--deep-wine); margin-bottom: 0.5rem;">$2,100 <span style="font-size: 0.9rem;">/ 60 分鐘</span></div>
-            <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.9;">透過 Google 會議視訊，全程錄影後寄給你（不需開鏡頭，需開麥克風）。請在安靜環境進行，若環境不適合小玩有權取消。</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="font-size: 0.72rem; letter-spacing: 0.2em; color: var(--dusty-rose); text-transform: uppercase;">收費方式</div>
+            <div style="display: flex; gap: 0.5rem;">
+              <span class="service-delivery">⏱ 超時 10 分鐘 ＋ $350</span>
+              <span class="service-delivery" style="color: #C06060; background: #FEF2F2; border-color: rgba(192,96,96,0.2);">⚡ 當日加急 ＋ $500</span>
+            </div>
           </div>
-          <div style="padding: 1.1rem 1.3rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
-            <div style="font-size: 0.8rem; color: var(--muted-mauve); margin-bottom: 0.3rem;">實體占卜</div>
-            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--deep-wine); margin-bottom: 0.5rem;">$2,600 <span style="font-size: 0.9rem;">/ 60 分鐘</span></div>
-            <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.9;">地點為中山區咖啡廳，需付低消。</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch;">
+            <div style="padding: 1.1rem 1.3rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
+              <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.3rem;">線上占卜</div>
+              <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--deep-wine); margin-bottom: 0.5rem;">$2,100 <span style="font-size: 0.9rem;">/ 60 分鐘</span></div>
+              <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">透過 Google 會議視訊，全程錄影後寄給你<br>（不需開鏡頭，需開麥克風）。<br>請在安靜環境進行，若環境不佳，小玩有權拒絕占卜。</div>
+            </div>
+            <div style="padding: 1.1rem 1.3rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
+              <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.3rem;">實體占卜</div>
+              <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--deep-wine); margin-bottom: 0.5rem;">$2,500 <span style="font-size: 0.9rem;">/ 60 分鐘</span></div>
+              <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">地點為小樹屋空間，由個案負擔場地費<br>（場地費約每小時 $170–$400）<br>無法當日預約實體占卜。</div>
+            </div>
           </div>
         </div>
 
-        <!-- 右欄：適合問題 + 規則 -->
+        <!-- 適合問題：全寬 -->
         <div>
           <div style="font-size: 0.72rem; letter-spacing: 0.2em; color: var(--dusty-rose); text-transform: uppercase; margin-bottom: 1.2rem;">適合問題類型</div>
-          <ul class="service-list" style="margin-bottom: 2rem;">
+          <ul class="service-list" style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem;">
             <li>整體性較複雜、需深入分析的問題</li>
-            <li>面臨人生十字路口、很多選擇不知道怎麼選</li>
             <li>同時有多個問題想問（工作 ＋ 感情等）</li>
+            <li>面臨人生十字路口、很多選擇不知道怎麼選</li>
             <li>想請牌給予建議與方向</li>
           </ul>
-
-          <div style="font-size: 0.72rem; letter-spacing: 0.2em; color: var(--dusty-rose); text-transform: uppercase; margin-bottom: 1.2rem;">預約與變更規範</div>
-          <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 2;">
-            <p style="margin-bottom: 0.9rem;">💳 <strong>預約確認</strong>：須完成匯款才算預約成功。</p>
-            <p style="margin-bottom: 0.9rem;">📅 <strong>改期</strong>：每筆預約提供一次免費改期，請於 <strong>24 小時前</strong>私訊告知，逾期不受理。</p>
-            <p style="margin-bottom: 0.9rem;">❌ <strong>取消</strong>：時段已預留，臨時取消或未出席恕不退款。</p>
-            <p>⏰ <strong>遲到</strong>：遲到將縮減占卜時間，超過 <strong>15 分鐘</strong>視同放棄，恕不退款。</p>
-          </div>
         </div>
 
       </div>
 
-      <!-- 底部備注 -->
-      <div style="margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(245,194,0,0.15); display: flex; gap: 2rem; flex-wrap: wrap;">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">⏱ 超時以 10 分鐘為單位 ＋ $350</span>
-        <span style="font-size: 0.8rem; color: #D05050;">⚡ 當日預約加急費 ＋ $500</span>
+      <!-- 規範橫跨全寬 -->
+      <div style="margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid rgba(245,194,0,0.2);">
+        <div style="font-size: 0.72rem; letter-spacing: 0.2em; color: var(--dusty-rose); text-transform: uppercase; margin-bottom: 1.2rem;">預約與變更規範</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 3rem; font-size: 0.85rem; line-height: 1.85;">
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">💳 預約確認</div>
+            <div style="color: var(--text-muted);">完成匯款後預約才算成功，會立刻為你保留專屬時段喔！</div>
+          </div>
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">❌ 預約取消</div>
+            <div style="color: var(--text-muted);">時段已為你預留，若匯款後臨時取消或當天未出席，<br>恕不辦理退款，再請見諒。</div>
+          </div>
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">📅 預約改期</div>
+            <div style="color: var(--text-muted);">有 <strong>一次</strong> 免費改期機會，請於 <strong>24 小時前</strong> 私訊告知，逾期不受理。<br>改期後仍未出席，視同放棄預約，恕不接受二次改期或退款。</div>
+          </div>
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⏰ 遲到處理</div>
+            <div style="color: var(--text-muted);">會為你保留 10 分鐘，但占卜時間會扣除遲到的時長，<br>若後續有其他預約，將無法後補或延後結束。</div>
+          </div>
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⌛ 逾時規範</div>
+            <div style="color: var(--text-muted);">遲到超過 <strong>15 分鐘（含）</strong> 視同放棄預約，<br>為尊重後續預約權益將無法占卜，且不予退款。</div>
+          </div>
+
+          <div>
+            <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⚠️ 突發狀況</div>
+            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）無法進行，<br>會主動聯繫你，並提供「全額退款」或「優先改期」。</div>
+          </div>
+
+        </div>
       </div>
 
     </div>
 
-    <!-- 離線占卜 grid -->
-    <div class="service-grid">
+    <!-- 離線占卜 -->
+    <div style="background: #FFFFFF; border: 1px solid rgba(245,194,0,0.3); border-radius: 12px; padding: 2.2rem 2.4rem;">
 
-      <div class="service-card">
-        <span class="service-badge">離線 · 文字</span>
-        <span class="service-icon">◇</span>
-        <div class="service-name">單題占卜（文字）</div>
-        <div class="service-price">$500</div>
-        <div class="service-desc">三張萬用牌陣，精準給你整體訊息與未來的發展方向。</div>
-        <div class="service-delivery">3–5 天內給文字解析</div>
+      <div style="margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(245,194,0,0.2);">
+        <div style="font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem;">✦ 離線占卜</div>
+        <div style="font-size: 0.92rem; color: var(--text-muted);">文字解析 3–5 天內完成，影片解析 5–7 天內完成。</div>
       </div>
 
-      <div class="service-card">
-        <span class="service-badge">離線 · 影片</span>
-        <span class="service-icon">◇</span>
-        <div class="service-name">選擇牌陣（影片）</div>
-        <div class="service-price">$1,000</div>
-        <div class="service-desc">來到人生十字路口不知道怎麼選擇，選擇牌陣給予你做決定的建議。</div>
-        <div class="service-warn">＋ $450 / 第三個選項起每增加一個選項</div>
-        <ul class="service-list">
-          <li>你現在的狀態</li>
-          <li>選 A 的發展</li>
-          <li>選 B 的發展</li>
-          <li>給予你選擇的建議</li>
-          <li>建議 ＆ 祝福訊息卡</li>
-        </ul>
-        <div class="service-delivery">5–7 天內給影片解析</div>
-      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
 
-      <div class="service-card">
-        <span class="service-badge">離線 · 影片</span>
-        <span class="service-icon">◇</span>
-        <div class="service-name">感情牌陣全面解析（影片）</div>
-        <div class="service-price">$1,500</div>
-        <div class="service-desc">適合任何感情關係：曖昧 ／ 交往 ／ 斷聯 ／ 復合 ／ 想分手。</div>
-        <div class="service-warn">⚠ 暗戀或與對方不熟識不適合此牌陣</div>
-        <ul class="service-list">
-          <li>兩人現在的感情狀態</li>
-          <li>你對這段關係的想法與行動</li>
-          <li>對方對這段關係的想法與行動</li>
-          <li>兩人未來三個月的發展</li>
-          <li>建議 ＆ 祝福訊息卡</li>
-        </ul>
-        <div class="service-delivery">5–7 天內給影片解析</div>
-      </div>
+        <div style="padding: 1.4rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2); display: flex; flex-direction: column; gap: 1rem;">
 
-      <div class="service-card">
-        <span class="service-badge">離線 · 影片</span>
-        <span class="service-icon">◇</span>
-        <div class="service-name">事業牌陣全面解析（影片）</div>
-        <div class="service-price">$1,500</div>
-        <div class="service-desc">適合：上班族 ／ 主管職 ／ 老闆 ／ SOHO ／ 副業 ／ 創業。</div>
-        <div class="service-warn">⚠ 待業找工作不適合此牌陣</div>
-        <ul class="service-list">
-          <li>你對這份工作的想法與行動</li>
-          <li>工作上所遇到的盲點／問題</li>
-          <li>這份工作擁有的資源、人際與建議</li>
-          <li>未來工作三個月的發展</li>
-          <li>建議 ＆ 祝福訊息卡</li>
-        </ul>
-        <div class="service-delivery">5–7 天內給影片解析</div>
-      </div>
+          <div style="padding-bottom: 1rem; border-bottom: 1px solid rgba(245,194,0,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+              <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: var(--charcoal);">單題占卜</div>
+              <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;">文字解析</span>
+            </div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep-wine); margin-bottom: 0.4rem;">$500</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.8;">三張萬用牌陣，精準給你整體訊息與未來的發展方向。</div>
+          </div>
 
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+              <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: var(--charcoal);">指引占卜</div>
+              <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;">文字解析</span>
+            </div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep-wine); margin-bottom: 0.4rem;">$300</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.8;">潛意識針對心中的問題，給予你當下需要的提醒跟指引。</div>
+          </div>
+
+        </div>
+
+        <div style="padding: 1.4rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.8rem;">
+            <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: var(--charcoal);">選擇牌陣</div>
+            <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;">影片解析</span>
+          </div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep-wine); margin-bottom: 0.4rem;">$1,000</div>
+          <div class="service-warn" style="margin: 0.4rem 0 0.8rem;">增加一個選項 ＋ $350</div>
+          <ul class="service-list" style="font-size: 0.82rem;">
+            <li>你現在的狀態</li>
+            <li>選 A 的發展</li>
+            <li>選 B 的發展</li>
+            <li>給予你選擇的建議</li>
+            <li>建議 ＆ 祝福訊息卡</li>
+          </ul>
+        </div>
+
+        <div style="padding: 1.4rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.8rem;">
+            <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: var(--charcoal);">感情牌陣</div>
+            <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;">影片解析</span>
+          </div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep-wine); margin-bottom: 0.4rem;">$1,500</div>
+          <div class="service-warn" style="margin: 0.4rem 0 0.8rem;">⚠ 暗戀或與對方不熟識不適合</div>
+          <ul class="service-list" style="font-size: 0.82rem;">
+            <li>兩人現在的感情狀態</li>
+            <li>你對這段關係的想法與行動</li>
+            <li>對方對這段關係的想法與行動</li>
+            <li>兩人未來三個月的發展</li>
+            <li>建議 ＆ 祝福訊息卡</li>
+          </ul>
+        </div>
+
+        <div style="padding: 1.4rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.8rem;">
+            <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: var(--charcoal);">事業牌陣</div>
+            <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;">影片解析</span>
+          </div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep-wine); margin-bottom: 0.4rem;">$1,500</div>
+          <div class="service-warn" style="margin: 0.4rem 0 0.8rem;">⚠ 待業找工作不適合</div>
+          <ul class="service-list" style="font-size: 0.82rem;">
+            <li>你對這份工作的想法與行動</li>
+            <li>工作上所遇到的盲點／問題</li>
+            <li>這份工作擁有的資源、人際與建議</li>
+            <li>未來工作三個月的發展</li>
+            <li>建議 ＆ 祝福訊息卡</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
     </div>
   </div>
 </section>
