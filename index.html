@@ -482,7 +482,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
-    padding: 0.3rem 2rem 0.5rem;
+    padding: 0.3rem 0 0.5rem;
     position: relative;
     cursor: grab;
     user-select: none;
@@ -1377,17 +1377,18 @@
     }
   }
 
-  // reviews infinite scroll + dot indicator
+  // reviews infinite scroll
   const reviewsWrapper = document.getElementById('reviewsWrapper');
   const reviewsTrack = reviewsWrapper ? reviewsWrapper.querySelector('.reviews-track') : null;
   const dotsEl = document.getElementById('reviewsDots');
 
   if (reviewsTrack && dotsEl) {
+    // Clone cards for seamless loop
     const original = reviewsTrack.innerHTML;
-    reviewsTrack.innerHTML = original + original + original;
+    reviewsTrack.innerHTML = original + original;
 
-    const allCards = reviewsTrack.querySelectorAll('.review-card');
-    const total = allCards.length / 3;
+    const cards = reviewsTrack.querySelectorAll('.review-card');
+    const total = cards.length / 2;
 
     for (let i = 0; i < total; i++) {
       const d = document.createElement('div');
@@ -1395,34 +1396,47 @@
       dotsEl.appendChild(d);
     }
 
-    // Start at middle set
-    const cardW = allCards[0].offsetWidth + 19;
-    reviewsWrapper.scrollLeft = cardW * total;
-
-    reviewsWrapper.addEventListener('scroll', () => {
-      const mid = reviewsWrapper.scrollLeft + reviewsWrapper.clientWidth / 2;
+    // Update dots
+    function updateDots() {
+      const half = reviewsTrack.scrollWidth / 2;
+      const pos = reviewsWrapper.scrollLeft % half;
+      const mid = pos + reviewsWrapper.clientWidth / 2;
       let closest = 0, minDist = Infinity;
       for (let i = 0; i < total; i++) {
-        const c = allCards[i];
+        const c = cards[i];
         const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
         if (dist < minDist) { minDist = dist; closest = i; }
       }
       dotsEl.querySelectorAll('.reviews-dot').forEach((d, i) => d.classList.toggle('active', i === closest));
+    }
 
-      const third = reviewsTrack.scrollWidth / 3;
-      if (reviewsWrapper.scrollLeft >= third * 2) {
-        reviewsWrapper.scrollLeft -= third;
-      } else if (reviewsWrapper.scrollLeft <= 0) {
-        reviewsWrapper.scrollLeft += third;
+    // Seamless loop - when reaching second copy, jump back silently
+    reviewsWrapper.addEventListener('scroll', () => {
+      const half = reviewsTrack.scrollWidth / 2;
+      if (reviewsWrapper.scrollLeft >= half) {
+        reviewsWrapper.scrollLeft -= half;
       }
+      updateDots();
     });
 
+    // Drag
     let drag = false, sx = 0, sl = 0;
-    reviewsWrapper.addEventListener('mousedown', e => { drag = true; reviewsWrapper.classList.add('dragging'); sx = e.pageX; sl = reviewsWrapper.scrollLeft; });
+    reviewsWrapper.addEventListener('mousedown', e => {
+      drag = true;
+      reviewsWrapper.classList.add('dragging');
+      sx = e.pageX; sl = reviewsWrapper.scrollLeft;
+    });
     document.addEventListener('mouseup', () => { drag = false; reviewsWrapper.classList.remove('dragging'); });
-    reviewsWrapper.addEventListener('mousemove', e => { if (!drag) return; e.preventDefault(); reviewsWrapper.scrollLeft = sl - (e.pageX - sx) * 1.5; });
+    reviewsWrapper.addEventListener('mousemove', e => {
+      if (!drag) return;
+      e.preventDefault();
+      reviewsWrapper.scrollLeft = sl - (e.pageX - sx) * 1.5;
+    });
     reviewsWrapper.addEventListener('touchstart', e => { sx = e.touches[0].pageX; sl = reviewsWrapper.scrollLeft; });
-    reviewsWrapper.addEventListener('touchmove', e => { reviewsWrapper.scrollLeft = sl - (e.touches[0].pageX - sx) * 1.5; });
+    reviewsWrapper.addEventListener('touchmove', e => {
+      e.preventDefault();
+      reviewsWrapper.scrollLeft = sl - (e.touches[0].pageX - sx) * 1.5;
+    }, { passive: false });
   }
 </script>
 
