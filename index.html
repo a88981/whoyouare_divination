@@ -608,8 +608,10 @@
   }
 
   .mobile-br { display: none; }
+  .desktop-br { display: inline; }
   @media (max-width: 700px) {
     .mobile-br { display: inline; }
+    .desktop-br { display: none; }
   }
 
   /* ─── HAMBURGER ─── */
@@ -676,6 +678,10 @@
     /* Hero */
     .hero { padding: 5rem 1.2rem 3rem; }
     .hero img[alt="我只是想知道"] { width: 75vw !important; height: 75vw !important; }
+    .service-list li { font-size: 0.78rem !important; }
+    .service-delivery { font-size: 0.72rem !important; padding: 0.4rem 0.7rem !important; }
+    .faq-nope { font-size: 0.7rem !important; line-height: 1.5 !important; }
+    .faq-nope-grid { gap: 0.25rem !important; }
     .hero-title { font-size: 1.1rem !important; margin-bottom: 0.4rem; }
     .hero-subtitle { font-size: 0.82rem !important; margin-bottom: 1.2rem; }
     .hero-tools-text { font-size: 0.72rem; line-height: 2; margin-bottom: 1.5rem; }
@@ -815,7 +821,7 @@
       </p>
       <div style="margin-top: 1.2rem; display: flex; gap: 2rem; flex-wrap: wrap;">
         <span class="accent"># 請帶著聊天的心情來占卜唷</span>
-        <span class="accent"># 如有準確的出生時間，可以用人類圖 / 生命數字補充資訊</span>
+        <span class="accent"># 如有準確的出生時間，<span class="mobile-br"><br></span>可以用人類圖 / 生命數字補充資訊</span>
       </div>
     </div>
 
@@ -867,9 +873,9 @@
     </div>
 
     <div style="margin-top: 2rem; text-align: center; background: #FFF9E6; padding: 2rem 2.5rem; border-radius: 8px;">
-      <p>所有的答案都不會幫你做決定，只會給予建議。<br>
-      你可以選擇採用也可以不採用，就當作再聽氣象預報。<br>
-      <span class="highlight">為自己的決定負責，並且相信自己已經做到最好了！</span></p>
+      <p>所有的答案都不會幫你做決定，<span class="mobile-br"><br></span>只會給予建議。<br>
+      你可以選擇採用也可以不採用，<span class="mobile-br"><br></span>就當作再聽氣象預報。<br>
+      <span class="highlight">為自己的決定負責，<span class="mobile-br"><br></span>並且相信自己已經做到最好了！</span></p>
     </div>
   </div>
 </section>
@@ -977,7 +983,7 @@
       <!-- 標題 -->
       <div style="margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(245,194,0,0.2);">
         <div style="font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem;">✦ 一對一占卜</div>
-        <div style="font-size: 0.92rem; color: var(--text-muted);">不限主題與題數，各類問題在時間內為你全面解析！</div>
+        <div style="font-size: 0.92rem; color: var(--text-muted);">不限主題與題數，<span class="mobile-br"><br></span>各類問題在時間內為你全面解析！</div>
       </div>
 
       <!-- 主體：定價全寬，適合問題在下 -->
@@ -998,7 +1004,7 @@
                 <div style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 400; color: var(--charcoal);">線上占卜&nbsp;&nbsp;<span style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--deep-wine);">$2,100</span></div>
                 <span style="font-size:0.72rem;color:#7A5C00;background:#FFF3B0;border:1px solid rgba(245,194,0,0.5);padding:0.2rem 0.8rem;border-radius:20px;white-space:nowrap;display:inline-block;flex-shrink:0;margin-left:0.8rem;">60 分鐘</span>
               </div>
-              <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">透過 Google 會議視訊，全程錄影後寄給你<br>（不需開鏡頭，需開麥克風）。<br>請在安靜環境進行，若環境不佳，小玩有權拒絕占卜。</div>
+              <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">透過 Google 會議視訊，<span class="mobile-br"><br></span>全程錄影後寄給你<br>（不需開鏡頭，需開麥克風）。<br>請在安靜環境進行，<span class="mobile-br"><br></span>若環境不佳，小玩有權拒絕占卜。</div>
             </div>
             <div style="padding: 0.5rem 1.3rem 1rem; background: #FDFBF0; border-radius: 8px; border: 1px solid rgba(245,194,0,0.2);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
@@ -1030,32 +1036,32 @@
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">💳 預約確認</div>
-            <div style="color: var(--text-muted);">完成匯款後必須填寫<a href="https://a88981.github.io/whoyouare_divination/booking.html" target="_blank" style="color: var(--deep-wine); text-decoration: underline; text-underline-offset: 3px;">預約確認單</a>，並請留意 IG 或 LINE 私訊。<br>收到小玩確認回覆後才算預約成功，屆時將為您保留該時段。</div>
+            <div style="color: var(--text-muted);">完成匯款後必須填寫<a href="https://a88981.github.io/whoyouare_divination/booking.html" target="_blank" style="color: var(--deep-wine); text-decoration: underline; text-underline-offset: 3px;">預約確認單</a>，<span class="mobile-br"><br></span>並請留意 IG 或 LINE 私訊。<br>收到小玩確認回覆後才算預約成功，<span class="mobile-br"><br></span>屆時將為您保留該時段。</div>
           </div>
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">❌ 預約取消</div>
-            <div style="color: var(--text-muted);">時段已為你預留，若匯款後臨時取消或當天未出席，<br>恕不辦理退款，再請見諒。</div>
+            <div style="color: var(--text-muted);">時段已為你預留，<span class="mobile-br"><br></span>若匯款後臨時取消或當天未出席，<br>恕不辦理退款，再請見諒。</div>
           </div>
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">📅 預約改期</div>
-            <div style="color: var(--text-muted);">有 <strong>一次</strong> 免費改期機會，請於 <strong>24 小時前</strong> 私訊告知，逾期不受理。<br>改期後仍未出席，視同放棄預約，恕不接受二次改期或退款。</div>
+            <div style="color: var(--text-muted);">有 <strong>一次</strong> 免費改期機會，<span class="mobile-br"><br></span>請於 <strong>24 小時前</strong> 私訊告知，逾期不受理。<br>改期後仍未出席，視同放棄預約，<span class="mobile-br"><br></span>恕不接受二次改期或退款。</div>
           </div>
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⏰ 遲到處理</div>
-            <div style="color: var(--text-muted);">會為你保留 10 分鐘，但占卜時間會扣除遲到的時長，<br>若後續有其他預約，將無法後補或延後結束。</div>
+            <div style="color: var(--text-muted);">會為你保留 10 分鐘，<span class="mobile-br"><br></span>但占卜時間會扣除遲到的時長，<br>若後續有其他預約，<span class="mobile-br"><br></span>將無法後補或延後結束。</div>
           </div>
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⌛ 逾時規範</div>
-            <div style="color: var(--text-muted);">遲到超過 <strong>15 分鐘（含）</strong> 視同放棄預約，<br>為尊重後續預約權益將無法占卜，且不予退款。</div>
+            <div style="color: var(--text-muted);">遲到超過 <strong>15 分鐘（含）</strong> 視同放棄預約，<br>為尊重後續預約權益將無法占卜，<span class="mobile-br"><br></span>且不予退款。</div>
           </div>
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⚠️ 突發狀況</div>
-            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）無法進行，<br>會主動聯繫你，並提供「全額退款」或「優先改期」。</div>
+            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）<span class="mobile-br"><br></span>無法進行，<span class="desktop-br"><br></span>會主動聯繫你，並提供「全額退款」或「優先改期」。</div>
           </div>
 
         </div>
@@ -1068,7 +1074,7 @@
 
       <div style="margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(245,194,0,0.2);">
         <div style="font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem;">✦ 離線占卜</div>
-        <div style="font-size: 0.92rem; color: var(--text-muted);">文字解析 3–5 天內完成，影片解析 5–7 天內完成。</div>
+        <div style="font-size: 0.92rem; color: var(--text-muted);">文字解析 3–5 天內完成，<span class="mobile-br"><br></span>影片解析 5–7 天內完成。</div>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
