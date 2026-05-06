@@ -482,7 +482,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
-    padding: 0.3rem 0 1.5rem;
+    padding: 0.3rem 80px 1.5rem;
     position: relative;
     cursor: grab;
     user-select: none;
@@ -495,21 +495,45 @@
     gap: 1.2rem;
     width: max-content;
     align-items: stretch;
-    animation: reviewsScroll 120s linear infinite;
   }
-  .reviews-track:hover { animation-play-state: paused; }
-  .reviews-track-wrapper.dragging .reviews-track { animation-play-state: paused; }
-  @keyframes reviewsScroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  .reviews-outer {
+    position: relative;
   }
+  .reviews-fade-left {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 80px;
+    background: linear-gradient(to right, #FFF9E6 45%, transparent);
+    z-index: 2; display: flex; align-items: center; padding-left: 14px;
+    pointer-events: none;
+  }
+  .reviews-fade-right {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 80px;
+    background: linear-gradient(to left, #FFF9E6 45%, transparent);
+    z-index: 2; display: flex; align-items: center; justify-content: flex-end; padding-right: 14px;
+    pointer-events: none;
+  }
+  .reviews-arrow {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1px solid rgba(180,150,0,0.3);
+    color: #8A6C00;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    pointer-events: all;
+  }
+  .reviews-arrow:hover { background: #FAFAFA; }
   .review-card {
     background: #FFFFFF;
     border: 1px solid rgba(245,194,0,0.25);
     border-radius: 10px;
-    padding: 1rem 1.2rem;
+    padding: 1.5rem 1.4rem;
     width: 400px;
     flex-shrink: 0;
+    min-height: 200px;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -898,8 +922,11 @@
     <div class="section-label">占卜回饋</div>
     <h2 class="section-title">他們說⋯⋯</h2>
   </div>
-  <div class="reviews-track-wrapper">
-    <div class="reviews-track">
+  <div class="reviews-outer">
+    <div class="reviews-fade-left"><div class="reviews-arrow" id="reviewsArrowLeft">‹</div></div>
+    <div class="reviews-fade-right"><div class="reviews-arrow" id="reviewsArrowRight">›</div></div>
+    <div class="reviews-track-wrapper" id="reviewsWrapper">
+      <div class="reviews-track">
 
       <div class="review-card">
         <div class="review-left">
@@ -978,6 +1005,7 @@
         </div>
       </div>
 
+    </div>
     </div>
   </div>
 </section>
@@ -1373,47 +1401,41 @@
     }
   }
 
-  // seamless auto-scroll reviews
-  const track = document.querySelector('.reviews-track');
-  if (track) {
-    const cards = track.innerHTML;
-    track.innerHTML = cards + cards;
-  }
+  // reviews drag to scroll
+  const reviewsWrapper = document.getElementById('reviewsWrapper');
+  const arrowLeft = document.getElementById('reviewsArrowLeft');
+  const arrowRight = document.getElementById('reviewsArrowRight');
 
-  // drag to scroll reviews
-  const wrapper = document.querySelector('.reviews-track-wrapper');
-  if (wrapper) {
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeft = 0;
+  if (arrowLeft) arrowLeft.addEventListener('click', () => {
+    reviewsWrapper.scrollBy({ left: -420, behavior: 'smooth' });
+  });
+  if (arrowRight) arrowRight.addEventListener('click', () => {
+    reviewsWrapper.scrollBy({ left: 420, behavior: 'smooth' });
+  });
 
-    wrapper.addEventListener('mousedown', (e) => {
+  if (reviewsWrapper) {
+    let isDragging = false, startX = 0, scrollLeft = 0;
+    reviewsWrapper.addEventListener('mousedown', (e) => {
       isDragging = true;
-      wrapper.classList.add('dragging');
-      startX = e.pageX - wrapper.offsetLeft;
-      scrollLeft = wrapper.scrollLeft;
+      reviewsWrapper.classList.add('dragging');
+      startX = e.pageX - reviewsWrapper.offsetLeft;
+      scrollLeft = reviewsWrapper.scrollLeft;
     });
     document.addEventListener('mouseup', () => {
       isDragging = false;
-      wrapper.classList.remove('dragging');
+      reviewsWrapper.classList.remove('dragging');
     });
-    wrapper.addEventListener('mousemove', (e) => {
+    reviewsWrapper.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       e.preventDefault();
-      const x = e.pageX - wrapper.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      wrapper.scrollLeft = scrollLeft - walk;
+      reviewsWrapper.scrollLeft = scrollLeft - (e.pageX - reviewsWrapper.offsetLeft - startX) * 1.5;
     });
-
-    // touch support
-    wrapper.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].pageX - wrapper.offsetLeft;
-      scrollLeft = wrapper.scrollLeft;
+    reviewsWrapper.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].pageX;
+      scrollLeft = reviewsWrapper.scrollLeft;
     });
-    wrapper.addEventListener('touchmove', (e) => {
-      const x = e.touches[0].pageX - wrapper.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      wrapper.scrollLeft = scrollLeft - walk;
+    reviewsWrapper.addEventListener('touchmove', (e) => {
+      reviewsWrapper.scrollLeft = scrollLeft - (e.touches[0].pageX - startX) * 1.5;
     });
   }
 </script>
