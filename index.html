@@ -617,9 +617,13 @@
 
   .mobile-br { display: none; }
   .desktop-br { display: inline; }
+  .mobile-only { display: none; }
+  .desktop-only { display: inline; }
   @media (max-width: 700px) {
     .mobile-br { display: inline; }
     .desktop-br { display: none; }
+    .mobile-only { display: inline; }
+    .desktop-only { display: none; }
   }
 
   /* ─── HAMBURGER ─── */
@@ -1069,7 +1073,10 @@
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⚠️ 突發狀況</div>
-            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）<span class="mobile-br"><br></span>無法進行，會主動聯繫你，<span class="desktop-br"><br></span><span class="mobile-br"><br></span>並提供「全額退款」或「優先改期」。</div>
+            <div style="color: var(--text-muted);">
+              <span class="desktop-only">若因我方突發狀況（如設備、身體不適）無法進行，<br>會主動聯繫你，並提供「全額退款」或「優先改期」。</span>
+              <span class="mobile-only">若因我方突發狀況（如設備、身體不適）<br>無法進行，會主動聯繫你，<br>並提供「全額退款」或「優先改期」。</span>
+            </div>
           </div>
 
         </div>
