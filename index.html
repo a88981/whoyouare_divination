@@ -482,7 +482,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
-    padding: 0.3rem 80px 1.5rem;
+    padding: 0.3rem 2rem 0.5rem;
     position: relative;
     cursor: grab;
     user-select: none;
@@ -496,36 +496,6 @@
     width: max-content;
     align-items: stretch;
   }
-  .reviews-outer {
-    position: relative;
-  }
-  .reviews-fade-left {
-    position: absolute; left: 0; top: 0; bottom: 0; width: 80px;
-    background: linear-gradient(to right, #FFF9E6 45%, transparent);
-    z-index: 2; display: flex; align-items: center; padding-left: 14px;
-    pointer-events: none;
-  }
-  .reviews-fade-right {
-    position: absolute; right: 0; top: 0; bottom: 0; width: 80px;
-    background: linear-gradient(to left, #FFF9E6 45%, transparent);
-    z-index: 2; display: flex; align-items: center; justify-content: flex-end; padding-right: 14px;
-    pointer-events: none;
-  }
-  .reviews-arrow {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: #FFFFFF;
-    border: 1px solid rgba(180,150,0,0.3);
-    color: #8A6C00;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    user-select: none;
-    pointer-events: all;
-  }
-  .reviews-arrow:hover { background: #FAFAFA; }
   .review-card {
     background: #FFFFFF;
     border: 1px solid rgba(245,194,0,0.25);
@@ -533,13 +503,22 @@
     padding: 1.5rem 1.4rem;
     width: 400px;
     flex-shrink: 0;
-    min-height: 200px;
     display: flex;
     gap: 1rem;
     align-items: center;
     transition: box-shadow 0.25s, border-color 0.25s;
   }
   .review-card:hover { border-color: #F5C200; box-shadow: 0 4px 16px rgba(245,194,0,0.15); }
+  .reviews-dot-row {
+    display: flex; gap: 6px; align-items: center; justify-content: center;
+    margin-top: 1rem; padding-bottom: 0.5rem;
+  }
+  .reviews-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(245,194,0,0.3);
+    transition: all 0.2s;
+  }
+  .reviews-dot.active { background: #F5C200; width: 18px; border-radius: 3px; }
   .review-left {
     flex-shrink: 0;
     display: flex;
@@ -757,7 +736,7 @@
     }
 
     /* Reviews */
-    .review-card { width: 80vw; padding: 0.9rem 1rem; }
+    .review-card { width: 85vw; padding: 1rem 1.2rem; flex-direction: row; }
     .review-text { font-size: 0.75rem; }
 
     /* Guide grid */
@@ -922,10 +901,7 @@
     <div class="section-label">占卜回饋</div>
     <h2 class="section-title">他們說⋯⋯</h2>
   </div>
-  <div class="reviews-outer">
-    <div class="reviews-fade-left"><div class="reviews-arrow" id="reviewsArrowLeft">‹</div></div>
-    <div class="reviews-fade-right"><div class="reviews-arrow" id="reviewsArrowRight">›</div></div>
-    <div class="reviews-track-wrapper" id="reviewsWrapper">
+  <div class="reviews-track-wrapper" id="reviewsWrapper">
       <div class="reviews-track">
 
       <div class="review-card">
@@ -1006,8 +982,8 @@
       </div>
 
     </div>
-    </div>
   </div>
+  <div class="reviews-dot-row" id="reviewsDots"></div>
 </section>
 
 
@@ -1401,42 +1377,52 @@
     }
   }
 
-  // reviews drag to scroll
+  // reviews infinite scroll + dot indicator
   const reviewsWrapper = document.getElementById('reviewsWrapper');
-  const arrowLeft = document.getElementById('reviewsArrowLeft');
-  const arrowRight = document.getElementById('reviewsArrowRight');
+  const reviewsTrack = reviewsWrapper ? reviewsWrapper.querySelector('.reviews-track') : null;
+  const dotsEl = document.getElementById('reviewsDots');
 
-  if (arrowLeft) arrowLeft.addEventListener('click', () => {
-    reviewsWrapper.scrollBy({ left: -420, behavior: 'smooth' });
-  });
-  if (arrowRight) arrowRight.addEventListener('click', () => {
-    reviewsWrapper.scrollBy({ left: 420, behavior: 'smooth' });
-  });
+  if (reviewsTrack && dotsEl) {
+    const original = reviewsTrack.innerHTML;
+    reviewsTrack.innerHTML = original + original + original;
 
-  if (reviewsWrapper) {
-    let isDragging = false, startX = 0, scrollLeft = 0;
-    reviewsWrapper.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      reviewsWrapper.classList.add('dragging');
-      startX = e.pageX - reviewsWrapper.offsetLeft;
-      scrollLeft = reviewsWrapper.scrollLeft;
+    const allCards = reviewsTrack.querySelectorAll('.review-card');
+    const total = allCards.length / 3;
+
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+      dotsEl.appendChild(d);
+    }
+
+    // Start at middle set
+    const cardW = allCards[0].offsetWidth + 19;
+    reviewsWrapper.scrollLeft = cardW * total;
+
+    reviewsWrapper.addEventListener('scroll', () => {
+      const mid = reviewsWrapper.scrollLeft + reviewsWrapper.clientWidth / 2;
+      let closest = 0, minDist = Infinity;
+      for (let i = 0; i < total; i++) {
+        const c = allCards[i];
+        const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      }
+      dotsEl.querySelectorAll('.reviews-dot').forEach((d, i) => d.classList.toggle('active', i === closest));
+
+      const third = reviewsTrack.scrollWidth / 3;
+      if (reviewsWrapper.scrollLeft >= third * 2) {
+        reviewsWrapper.scrollLeft -= third;
+      } else if (reviewsWrapper.scrollLeft <= 0) {
+        reviewsWrapper.scrollLeft += third;
+      }
     });
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      reviewsWrapper.classList.remove('dragging');
-    });
-    reviewsWrapper.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      reviewsWrapper.scrollLeft = scrollLeft - (e.pageX - reviewsWrapper.offsetLeft - startX) * 1.5;
-    });
-    reviewsWrapper.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].pageX;
-      scrollLeft = reviewsWrapper.scrollLeft;
-    });
-    reviewsWrapper.addEventListener('touchmove', (e) => {
-      reviewsWrapper.scrollLeft = scrollLeft - (e.touches[0].pageX - startX) * 1.5;
-    });
+
+    let drag = false, sx = 0, sl = 0;
+    reviewsWrapper.addEventListener('mousedown', e => { drag = true; reviewsWrapper.classList.add('dragging'); sx = e.pageX; sl = reviewsWrapper.scrollLeft; });
+    document.addEventListener('mouseup', () => { drag = false; reviewsWrapper.classList.remove('dragging'); });
+    reviewsWrapper.addEventListener('mousemove', e => { if (!drag) return; e.preventDefault(); reviewsWrapper.scrollLeft = sl - (e.pageX - sx) * 1.5; });
+    reviewsWrapper.addEventListener('touchstart', e => { sx = e.touches[0].pageX; sl = reviewsWrapper.scrollLeft; });
+    reviewsWrapper.addEventListener('touchmove', e => { reviewsWrapper.scrollLeft = sl - (e.touches[0].pageX - sx) * 1.5; });
   }
 </script>
 
