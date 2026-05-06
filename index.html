@@ -479,10 +479,17 @@
 
   /* ─── REVIEWS ─── */
   .reviews-track-wrapper {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
     padding: 0.3rem 0 1.5rem;
     position: relative;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
   }
+  .reviews-track-wrapper::-webkit-scrollbar { display: none; }
+  .reviews-track-wrapper.dragging { cursor: grabbing; }
   .reviews-track {
     display: flex;
     gap: 1.2rem;
@@ -491,6 +498,7 @@
     animation: reviewsScroll 120s linear infinite;
   }
   .reviews-track:hover { animation-play-state: paused; }
+  .reviews-track-wrapper.dragging .reviews-track { animation-play-state: paused; }
   @keyframes reviewsScroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -1061,7 +1069,7 @@
 
           <div>
             <div style="color: var(--charcoal); font-weight: 500; margin-bottom: 0.25rem;">⚠️ 突發狀況</div>
-            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）<span class="mobile-br"><br></span>無法進行，會主動聯繫你，<span class="mobile-br"><br></span>並提供「全額退款」或「優先改期」。</div>
+            <div style="color: var(--text-muted);">若因我方突發狀況（如設備、身體不適）無法進行，<span class="desktop-br"><br></span><span class="mobile-br"><br></span>會主動聯繫你，<span class="mobile-br"><br></span>並提供「全額退款」或「優先改期」。</div>
           </div>
 
         </div>
@@ -1361,9 +1369,45 @@
   // seamless auto-scroll reviews
   const track = document.querySelector('.reviews-track');
   if (track) {
-    // duplicate cards for seamless loop
     const cards = track.innerHTML;
     track.innerHTML = cards + cards;
+  }
+
+  // drag to scroll reviews
+  const wrapper = document.querySelector('.reviews-track-wrapper');
+  if (wrapper) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    wrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      wrapper.classList.add('dragging');
+      startX = e.pageX - wrapper.offsetLeft;
+      scrollLeft = wrapper.scrollLeft;
+    });
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      wrapper.classList.remove('dragging');
+    });
+    wrapper.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      wrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    // touch support
+    wrapper.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].pageX - wrapper.offsetLeft;
+      scrollLeft = wrapper.scrollLeft;
+    });
+    wrapper.addEventListener('touchmove', (e) => {
+      const x = e.touches[0].pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      wrapper.scrollLeft = scrollLeft - walk;
+    });
   }
 </script>
 
