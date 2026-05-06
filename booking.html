@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>預約確認單 · 小玩的心靈牌卡占卜</title>
+<title>🔮 預約確認單 · 小玩的心靈牌卡占卜</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,6 +135,7 @@
   input[type="date"],
   input[type="time"],
   input[type="number"],
+  input[type="email"],
   select,
   textarea {
     width: 100%;
@@ -282,11 +283,10 @@
       </div>
 
       <div class="form-group">
-        <label>聯絡方式 <span class="required">✦</span></label>
+        <label>聯絡社群 <span class="required">✦</span></label>
         <div class="contact-row">
           <div class="select-wrap">
             <select name="聯絡平台" required>
-              <option value="">選擇平台</option>
               <option value="Instagram">Instagram</option>
               <option value="LINE">LINE</option>
             </select>
@@ -295,18 +295,9 @@
         </div>
       </div>
 
-      <!-- 數字 -->
       <div class="form-group">
-        <label>內心想一個數字 <span class="required">✦</span></label>
-        <div class="number-row">
-          <div class="select-wrap">
-            <select name="心中數字" required>
-              <option value="">選擇</option>
-              <!-- JS 生成 01-99 -->
-            </select>
-          </div>
-          <p>閉上眼睛，心中浮現的第一個數字是？</p>
-        </div>
+        <label>聯絡信箱 <span class="required">✦</span></label>
+        <input type="email" name="聯絡信箱" placeholder="example@email.com" required style="width:100%;box-sizing:border-box;">
       </div>
 
       <!-- 占卜類型 -->
@@ -315,7 +306,7 @@
       <div class="form-group">
         <label>占卜方案 <span class="required">✦</span></label>
         <div class="select-wrap">
-          <select name="占卜方案" required>
+          <select name="占卜方案" id="planSelect" required>
             <option value="">請選擇</option>
             <option value="一對一線上占卜">一對一線上占卜</option>
             <option value="一對一實體占卜">一對一實體占卜</option>
@@ -328,21 +319,29 @@
         </div>
       </div>
 
-      <div class="form-group" id="datetimeGroup">
-        <label>預約日期 ／ 時間 <span class="required">✦</span><span class="hint">（離線占卜選匯款日期即可）</span></label>
+      <!-- 日期時間 - 只在一對一占卜顯示 -->
+      <div class="form-group" id="datetimeGroup" style="display: none;">
+        <label>預約日期 ／ 時間 <span class="required">✦</span></label>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
-          <input type="date" name="預約日期" required>
+          <input type="date" name="預約日期" id="dateInput">
           <input type="time" name="預約時間">
         </div>
       </div>
 
-      <div class="form-group">
-        <label>占卜問題 ／ 想詢問的方向 <span class="required">✦</span></label>
-        <div style="margin-bottom: 0.5rem; font-size: 0.75rem; color: #C05050; line-height: 1.8;">
-          ⚠ 為了保持占卜的客觀性，只需告知問題即可，不需分享事件現況或個人想法，避免干擾牌面解讀。
+      <!-- 數字 - 只在指引占卜顯示 -->
+      <div class="form-group" id="numberGroup" style="display: none;">
+        <label>內心想一個數字 <span class="required">✦</span></label>
+        <div class="number-row">
+          <div class="select-wrap">
+            <select name="心中數字" id="numberSelect">
+              <option value="">選擇</option>
+              <!-- JS 生成 01-99 -->
+            </select>
+          </div>
+          <p>閉上眼睛，心中浮現的第一個數字是？</p>
         </div>
-        <textarea name="占卜問題" placeholder="請告知你的問題，開放式問法為佳（例：這三個月的感情發展如何？）" required></textarea>
       </div>
+
 
       <!-- 匯款資訊 -->
       <div class="form-section-label">匯款資訊</div>
@@ -385,6 +384,29 @@
 </div>
 
 <script>
+  // Show/hide fields based on 占卜方案
+  const serviceSelect = document.getElementById('planSelect');
+  const datetimeGroup = document.getElementById('datetimeGroup');
+  const dateInput = document.getElementById('dateInput');
+  const numberGroup = document.getElementById('numberGroup');
+  const numberSelect = document.getElementById('numberSelect');
+
+  serviceSelect.addEventListener('change', () => {
+    const val = serviceSelect.value;
+    const isOnOne = val === '一對一線上占卜' || val === '一對一實體占卜';
+    const isGuide = val === '離線占卜｜指引占卜';
+
+    // 日期時間
+    datetimeGroup.style.display = isOnOne ? 'block' : 'none';
+    dateInput.required = isOnOne;
+    if (!isOnOne) dateInput.value = '';
+
+    // 數字
+    numberGroup.style.display = isGuide ? 'block' : 'none';
+    numberSelect.required = isGuide;
+    if (!isGuide) numberSelect.value = '';
+  });
+
   // 生成 01-99 選項
   const select = document.querySelector('select[name="心中數字"]');
   for (let i = 1; i <= 99; i++) {
